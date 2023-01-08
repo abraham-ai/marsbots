@@ -1,13 +1,21 @@
+from typing import Optional
 from manifest import Manifest
 
 
 class CharacterCapability:
-    def __init__(self, name: str, prompt: str, api_key: str):
+    def __init__(
+        self,
+        name: str,
+        prompt: str,
+        api_key: str,
+        cache_connection: Optional[str] = None,
+    ):
         self.name = name
         self.prompt = prompt
         self.llm = Manifest(
             client_name="openai",
             client_connection=api_key,
+            cache_connection=cache_connection,
             max_tokens=100,
             temperature=1.0,
             stop_token="<",
