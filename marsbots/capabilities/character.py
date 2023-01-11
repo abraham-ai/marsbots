@@ -16,8 +16,6 @@ class CharacterCapability:
         self.llm = Manifest(
             client_name="openai",
             client_connection=api_key,
-            cache_name="redis",
-            cache_connection=cache_connection,
             max_tokens=100,
             temperature=1.0,
             stop_token="<",
