@@ -12,8 +12,6 @@ class CharacterCapability:
             max_tokens=100,
             temperature=1.0,
             stop_token="<",
-            cache_name="redis",
-            cache_connection=cache_connection,
         )
 
     def reply_to_message(self, message: str, sender_name: str):
