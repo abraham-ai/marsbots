@@ -3,7 +3,7 @@ from marsbots.util import generate_run_id
 
 
 class CharacterCapability:
-    def __init__(self, name: str, prompt: str, api_key: str, cache_connection: str):
+    def __init__(self, name: str, prompt: str, api_key: str):
         self.name = name
         self.prompt = prompt
         self.llm = Manifest(
