@@ -1,16 +1,9 @@
-from typing import Optional
 from manifest import Manifest
 from marsbots.util import generate_run_id
 
 
 class CharacterCapability:
-    def __init__(
-        self,
-        name: str,
-        prompt: str,
-        api_key: str,
-        cache_connection: Optional[str] = None,
-    ):
+    def __init__(self, name: str, prompt: str, api_key: str, cache_connection: str):
         self.name = name
         self.prompt = prompt
         self.llm = Manifest(
@@ -19,6 +12,8 @@ class CharacterCapability:
             max_tokens=100,
             temperature=1.0,
             stop_token="<",
+            cache_name="redis",
+            cache_connection=cache_connection,
         )
 
     def reply_to_message(self, message: str, sender_name: str):
