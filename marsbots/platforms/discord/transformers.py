@@ -1,6 +1,5 @@
 from functools import partial
-from typing import Callable
-from discord import Any
+from typing import Any, Callable
 from marsbots.platforms.discord.behaviors import CharacterBehavior
 from marsbots.platforms.discord.checks import (
     in_channels,
