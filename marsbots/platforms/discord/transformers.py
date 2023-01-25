@@ -34,8 +34,7 @@ def transform_check(check: dict) -> Callable:
 
 
 def transform_behavior(behavior: dict) -> Any:
-    print("ccc", type(behavior))
-    if behavior["type"] == "character":
+    if behavior["type"] == "chat":
         prompt = behavior["data"]["prompt"]
         return CharacterBehavior(prompt)
     raise ValueError(f"Behavior {behavior} not found.")
