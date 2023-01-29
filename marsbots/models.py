@@ -3,36 +3,36 @@ from typing import Any, Callable
 
 
 @dataclass
-class BehaviorDocument:
-    name: str
-    type: str
-    data: dict
-
-
-@dataclass
-class CheckDocument:
-    type: str
-    data: dict
-
-
-@dataclass
-class Capability:
-    trigger: Callable
-    checks: list[Callable]
-    behaviors: list[Any]
-
-
-@dataclass
 class CapabilityDocument:
     name: str
+    type: str
+    data: dict
+
+
+@dataclass
+class ModifierDocument:
+    type: str
+    data: dict
+
+
+@dataclass
+class Command:
+    trigger: Callable
+    modifiers: list[Callable]
+    capabilities: list[Any]
+
+
+@dataclass
+class CommandDocument:
+    name: str
     trigger: str
-    behaviors: list[BehaviorDocument]
-    checks: list[CheckDocument]
+    capabilities: list[CapabilityDocument]
+    modifiers: list[ModifierDocument]
     requiredPowers: list[str]
 
 
 @dataclass
-class Personality:
+class Character:
     name: str
-    behaviors: list[BehaviorDocument]
-    capabilities: list[Capability]
+    capabilities: list[CapabilityDocument]
+    commands: list[Command]

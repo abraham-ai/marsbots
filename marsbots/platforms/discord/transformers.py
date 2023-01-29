@@ -1,7 +1,7 @@
 from functools import partial
 from typing import Any, Callable
-from marsbots.platforms.discord.behaviors import CharacterBehavior
-from marsbots.platforms.discord.checks import (
+from marsbots.platforms.discord.capabilities import ChatCapability
+from marsbots.platforms.discord.modifiers import (
     in_channels,
     in_guilds,
     not_in_channels,
@@ -17,24 +17,24 @@ def transform_trigger(trigger: str) -> Callable:
     raise ValueError(f"Trigger {trigger} not found.")
 
 
-def transform_check(check: dict) -> Callable:
-    if check["type"] == "inChannels":
-        channels = [int(channel) for channel in check["data"]["channels"]]
+def transform_modifier(modifier: dict) -> Callable:
+    if modifier["type"] == "inChannels":
+        channels = [int(channel) for channel in modifier["data"]["channels"]]
         return partial(in_channels, channels)
-    elif check["type"] == "inGuilds":
-        guilds = [int(guild) for guild in check["data"]["channels"]]
+    elif modifier["type"] == "inGuilds":
+        guilds = [int(guild) for guild in modifier["data"]["channels"]]
         return partial(in_guilds, guilds)
-    elif check["type"] == "notInChannels":
-        channels = [int(channel) for channel in check["data"]["channels"]]
+    elif modifier["type"] == "notInChannels":
+        channels = [int(channel) for channel in modifier["data"]["channels"]]
         return partial(not_in_channels, channels)
-    elif check["type"] == "notInGuilds":
-        guilds = [int(guild) for guild in check["data"]["channels"]]
+    elif modifier["type"] == "notInGuilds":
+        guilds = [int(guild) for guild in modifier["data"]["channels"]]
         return partial(not_in_guilds, guilds)
-    raise ValueError(f"Check {check} not found.")
+    raise ValueError(f"modifier {modifier} not found.")
 
 
-def transform_behavior(behavior: dict) -> Any:
-    if behavior["type"] == "chat":
-        prompt = behavior["data"]["prompt"]
-        return CharacterBehavior(prompt)
-    raise ValueError(f"Behavior {behavior} not found.")
+def transform_capability(capability: dict) -> Any:
+    if capability["type"] == "chat":
+        prompt = capability["data"]["prompt"]
+        return ChatCapability(prompt)
+    raise ValueError(f"Capability {capability} not found.")

@@ -10,13 +10,13 @@ from marsbots.platforms.discord.util import (
 from marsbots.util import generate_run_id
 
 
-class Behavior(ABC):
+class Capability(ABC):
     @abstractmethod
     async def call(self, bot, message: Message):
         pass
 
 
-class CharacterBehavior(Behavior):
+class ChatCapability(Capability):
     def __init__(self, prompt: str):
         self.prompt = prompt
 
